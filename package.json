@@ -1,0 +1,19 @@
+{
+  "name": "upi-instant-verification-system",
+  "version": "1.0.0",
+  "description": "Self-hosted PhonePe and Bank UPI instant payment verification system via Gmail IMAP",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node tests/testRegex.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "imapflow": "^1.0.171",
+    "mailparser": "^3.7.2",
+    "qrcode": "^1.5.4"
+  }
+}
