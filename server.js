@@ -48,7 +48,7 @@ async function handleGenerateQr(req, res) {
     const now = new Date();
     const expiresAt = new Date(now.getTime() + expiryMinutes * 60 * 1000);
 
-    // Format Order ID like AnujBots: FAMPAY2026...
+    // Format Order ID: FAMPAY...
     const dateStr = now.toISOString().replace(/[-:T]/g, '').slice(0, 14);
     const randHex = Math.random().toString(16).substring(2, 8).toUpperCase();
     const orderId = `FAMPAY${dateStr}${randHex}`;
@@ -84,7 +84,7 @@ async function handleGenerateQr(req, res) {
         created_at_ist: getIstTime(now),
         expires_at_ist: getIstTime(expiresAt)
       },
-      dev: 'FamPay Auto System'
+      dev: '@kal_mods'
     });
   } catch (err) {
     res.status(500).json({ status: 'error', message: err.message });
@@ -119,7 +119,7 @@ async function handleVerify(req, res) {
           sender_name: order.sender_name || 'Customer',
           payment_time_ist: getIstTime(new Date(order.paid_at || Date.now()))
         },
-        dev: 'FamPay Auto System'
+        dev: '@kal_mods'
       });
     }
 
@@ -150,7 +150,7 @@ async function handleVerify(req, res) {
           sender_name: senderName || 'Customer',
           payment_time_ist: getIstTime()
         },
-        dev: 'FamPay Auto System'
+        dev: '@kal_mods'
       });
     }
 
@@ -159,7 +159,7 @@ async function handleVerify(req, res) {
       status: 'error',
       message: 'Transaction failed - Payment not received yet',
       order_id: orderId,
-      dev: 'FamPay Auto System'
+      dev: '@kal_mods'
     });
   } catch (err) {
     res.status(500).json({ status: 'error', message: err.message });
@@ -193,7 +193,8 @@ app.post('/api/simulate-fampay-payment', async (req, res) => {
       utr: dummyUtr,
       sender_name: senderName || 'Anuj Patel',
       payment_time_ist: getIstTime()
-    }
+    },
+    dev: '@kal_mods'
   });
 });
 
